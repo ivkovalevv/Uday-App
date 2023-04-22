@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () =>{
     let heading = document.querySelector('.heading')
     let wrapper = document.querySelector('.wrapper')
-    let front = document.querySelector('.front')
-    let back = document.querySelector('.back')
+    let front = document.querySelectorAll('.front')
+    let back = document.querySelectorAll('.back')
     let container1 = document.querySelector('.container-1')
     let container2 = document.querySelector('.container-2')
     let container3 = document.querySelector('.container-3')
@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', () =>{
             const element = document.querySelector(`.${target}`);
             const removeEl = document.querySelector('.card-2')
 
+            front.forEach(el => el.classList.add('non-visible'))
+            back.forEach(el => el.classList.add('visible'))
+
             element.classList.add('open')
             removeEl.style.display = 'none'
             btnNext.disabled = false
@@ -31,12 +34,16 @@ document.addEventListener('DOMContentLoaded', () =>{
             const element = document.querySelector(`.${target}`);
             const removeEl = document.querySelector('.card-1')
 
+            front.forEach(el => el.classList.add('non-visible'))
+            back.forEach(el => el.classList.add('visible'))
+
+            /* front.classList.add('non-visible')
+            back.classList.add('visible') */
+
             element.classList.add('open')
             removeEl.style.display = 'none'
             btnNext.disabled = false
         }
-        front.classList.add('non-visible')
-        back.classList.add('visible')
     })
 
     function next(cont1, cont2){
@@ -51,6 +58,8 @@ document.addEventListener('DOMContentLoaded', () =>{
     }
 
     btnNext.addEventListener('click', () => {
+        front.forEach(el => el.classList.remove('non-visible'))
+        back.forEach(el => el.classList.remove('visible'))
         let firstChild = wrapper.children[0]
 
         if(firstChild === container1){
