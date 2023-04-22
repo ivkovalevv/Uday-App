@@ -23,9 +23,6 @@ document.addEventListener('DOMContentLoaded', () =>{
             const element = document.querySelector(`.${target}`);
             const removeEl = document.querySelector('.card-2')
 
-            front.style.opacity = '0'
-            back.style.opacity = '1'
-
             element.classList.add('open')
             removeEl.style.display = 'none'
             btnNext.disabled = false
@@ -34,13 +31,12 @@ document.addEventListener('DOMContentLoaded', () =>{
             const element = document.querySelector(`.${target}`);
             const removeEl = document.querySelector('.card-1')
 
-            front.style.opacity = '0'
-            back.style.opacity = '1'
-
             element.classList.add('open')
             removeEl.style.display = 'none'
             btnNext.disabled = false
         }
+        front.classList.add('non-visible')
+        back.classList.add('visible')
     })
 
     function next(cont1, cont2){

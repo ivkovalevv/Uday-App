@@ -100,12 +100,19 @@ body{
     font-size: 54px;
 }
 
+.visible{
+  opacity: 1;
+}
+
+.non-visible{
+  opacity: 0;
+}
+
 .back{
     display: flex;
     flex-direction: column;
     padding: 10px;
     overflow: hidden;
-    opacity: 0;
 }
 
 .back span{
