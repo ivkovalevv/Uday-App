@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () =>{
     let heading = document.querySelector('.heading')
     let wrapper = document.querySelector('.wrapper')
+    let front = document.querySelector('.front')
+    let back = document.querySelector('.back')
     let container1 = document.querySelector('.container-1')
     let container2 = document.querySelector('.container-2')
     let container3 = document.querySelector('.container-3')
@@ -21,6 +23,9 @@ document.addEventListener('DOMContentLoaded', () =>{
             const element = document.querySelector(`.${target}`);
             const removeEl = document.querySelector('.card-2')
 
+            front.style.opacity = '0'
+            back.style.opacity = '1'
+
             element.classList.add('open')
             removeEl.style.display = 'none'
             btnNext.disabled = false
@@ -28,6 +33,9 @@ document.addEventListener('DOMContentLoaded', () =>{
         } else if(target === 'card-2'){
             const element = document.querySelector(`.${target}`);
             const removeEl = document.querySelector('.card-1')
+
+            front.style.opacity = '0'
+            back.style.opacity = '1'
 
             element.classList.add('open')
             removeEl.style.display = 'none'
