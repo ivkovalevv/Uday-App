@@ -7,179 +7,33 @@
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>UDay App</title>
+    <script defer src="./js//more.js"></script>
     <script defer src="./js/app.js"></script>
+    <script defer src="./js/select.js"></script>
 </head>
 <body>
+    <header class="header">
+        <a href="#" class="heading-logo"></a>
+        <!-- <h3 class="heading">UDay App</h3> -->
+    </header>
     <div class="main">
-        <h3 class="heading">You Day!</h3>
-        <button class="btn" id="createCard">Создать пару</button>
-        <div class="wrapper">
-            <div class="container container-1 animate__animated">
-                <!-- <div class="card card-1" data-card="card-1">
-                    <div class="front" data-card="card-1"><span data-card="card-1">1</span></div>
-                    <div class="back" data-card="card-1">
-                        <img src="./img/yoga.svg" alt="Йога" class="card-icon" data-card="card-1">
-                        <span data-card="card-1">Йога</span>
-                    </div>
-                </div>
-                <div class="card card-2" data-card="card-2">
-                    <div class="front" data-card="card-2"><span data-card="card-2">1</span></div>
-                    <div class="back" data-card="card-2">
-                        <img src="./img/iying.svg" alt="Валяться" class="card-icon" data-card="card-2">
-                        <span data-card="card-2">Валяться - обниматься</span>
-                    </div>
-                </div> -->
-            </div>
-            <div class="container container-2 animate__animated">
-                <div class="card card-1" data-card="card-1">
-                    <div class="front" data-card="card-1"><span data-card="card-1">2</span></div>
-                    <div class="back" data-card="card-1">
-                        <img src="./img/breakfast.svg" alt="Завтрак" class="card-icon" data-card="card-1">
-                        <span data-card="card-1">Завтрак вне дома</span>
-                    </div>
-                </div>
-                <div class="card card-2" data-card="card-2">
-                    <div class="front" data-card="card-2"><span data-card="card-2">2</span></div>
-                    <div class="back" data-card="card-2">
-                        <img src="./img/breakfast.svg" alt="Завтрак" class="card-icon" data-card="card-2">
-                        <span data-card="card-2">Завтрак в постель</span>
-                    </div>
-                </div>
-            </div>
-            <div class="container container-3 animate__animated">
-                <div class="card card-1" data-card="card-1">
-                    <div class="front" data-card="card-1"><span data-card="card-1">3</span></div>
-                    <div class="back" data-card="card-1">
-                        <img src="./img/белка.svg" alt="Завтрак" class="card-icon" data-card="card-1">
-                        <span data-card="card-1">Едем кормить белочек</span>
-                    </div>
-                </div>
-                <div class="card card-2" data-card="card-2">
-                    <div class="front" data-card="card-2"><span data-card="card-2">3</span></div>
-                    <div class="back" data-card="card-2">
-                        <img src="./img/утка.svg" alt="Завтрак" class="card-icon" data-card="card-2">
-                        <span data-card="card-2">Едем кормить уточек</span>
-                    </div>
-                </div>
-            </div>
-            <div class="container container-4 animate__animated">
-                <div class="card card-1" data-card="card-1">
-                    <div class="front" data-card="card-1"><span data-card="card-1">4</span></div>
-                    <div class="back" data-card="card-1">
-                        <img src="./img/психоанализ.svg" alt="Завтрак" class="card-icon" data-card="card-1">
-                        <span data-card="card-1">Сеанс психоанализа (фобии)</span>
-                    </div>
-                </div>
-                <div class="card card-2" data-card="card-2">
-                    <div class="front" data-card="card-2"><span data-card="card-2">4</span></div>
-                    <div class="back" data-card="card-2">
-                        <img src="./img/психоанализ.svg" alt="Завтрак" class="card-icon" data-card="card-2">
-                        <span data-card="card-2">Сеанс психоанализа (фобии)</span>
-                    </div>
-                </div>
-            </div>
-            <div class="container container-5 animate__animated">
-                <div class="card card-1" data-card="card-1">
-                    <div class="front" data-card="card-1"><span data-card="card-1">5</span></div>
-                    <div class="back" data-card="card-1">
-                        <img src="./img/подарок.svg" alt="Завтрак" class="card-icon" data-card="card-1">
-                        <span data-card="card-1">3 мини-подарка (по цветам)</span>
-                    </div>
-                </div>
-                <div class="card card-2" data-card="card-2">
-                    <div class="front" data-card="card-2"><span data-card="card-2">5</span></div>
-                    <div class="back" data-card="card-2">
-                        <img src="./img/подарок.svg" alt="Завтрак" class="card-icon" data-card="card-2">
-                        <span data-card="card-2">3 мини-подарка (по цветам)</span>
-                    </div>
-                </div>
-            </div>
-            <div class="container container-6 animate__animated">
-                <div class="card card-1" data-card="card-1">
-                    <div class="front" data-card="card-1"><span data-card="card-1">6</span></div>
-                    <div class="back" data-card="card-1">
-                        <img src="./img/пазл.svg" alt="Завтрак" class="card-icon" data-card="card-1">
-                        <span data-card="card-1">Соберем пазл</span>
-                    </div>
-                </div>
-                <div class="card card-2" data-card="card-2">
-                    <div class="front" data-card="card-2"><span data-card="card-2">6</span></div>
-                    <div class="back" data-card="card-2">
-                        <img src="./img/картина.svg" alt="Завтрак" class="card-icon" data-card="card-2">
-                        <span data-card="card-2">Раскрасим картину по номерам</span>
-                    </div>
-                </div>
-            </div>
-            <div class="container container-7 animate__animated">
-                <div class="card card-1" data-card="card-1">
-                    <div class="front" data-card="card-1"><span data-card="card-1">7</span></div>
-                    <div class="back" data-card="card-1">
-                        <img src="./img/кофе.svg" alt="Завтрак" class="card-icon" data-card="card-1">
-                        <span data-card="card-1">Кофе брейк</span>
-                    </div>
-                </div>
-                <div class="card card-2" data-card="card-2">
-                    <div class="front" data-card="card-2"><span data-card="card-2">7</span></div>
-                    <div class="back" data-card="card-2">
-                        <img src="./img/кофе.svg" alt="Завтрак" class="card-icon" data-card="card-2">
-                        <span data-card="card-2">Чаепитие</span>
-                    </div>
-                </div>
-            </div>
-            <div class="container container-8 animate__animated">
-                <div class="card card-1" data-card="card-1">
-                    <div class="front" data-card="card-1"><span data-card="card-1">8</span></div>
-                    <div class="back" data-card="card-1">
-                        <img src="./img/игра.svg" alt="Завтрак" class="card-icon" data-card="card-1">
-                        <span data-card="card-1">Монополия</span>
-                    </div>
-                </div>
-                <div class="card card-2" data-card="card-2">
-                    <div class="front" data-card="card-2"><span data-card="card-2">8</span></div>
-                    <div class="back" data-card="card-2">
-                        <img src="./img/игра.svg" alt="Завтрак" class="card-icon" data-card="card-2">
-                        <span data-card="card-2">Правда или действие</span>
-                    </div>
-                </div>
-            </div>
-            <div class="container container-9 animate__animated">
-                <div class="card card-1" data-card="card-1">
-                    <div class="front" data-card="card-1"><span data-card="card-1">9</span></div>
-                    <div class="back" data-card="card-1">
-                        <img src="./img/ужин.svg" alt="Завтрак" class="card-icon" data-card="card-1">
-                        <span data-card="card-1">Полезный ужин</span>
-                    </div>
-                </div>
-                <div class="card card-2" data-card="card-2">
-                    <div class="front" data-card="card-2"><span data-card="card-2">9</span></div>
-                    <div class="back" data-card="card-2">
-                        <img src="./img/ужин.svg" alt="Завтрак" class="card-icon" data-card="card-2">
-                        <span data-card="card-2">Вредный ужин</span>
-                    </div>
-                </div>
-            </div>
-            <div class="container container-10 animate__animated">
-                <div class="card card-1" data-card="card-1">
-                    <div class="front" data-card="card-1"><span data-card="card-1">10</span></div>
-                    <div class="back" data-card="card-1">
-                        <img src="./img/рилсы.svg" alt="Завтрак" class="card-icon" data-card="card-1">
-                        <span data-card="card-1">Смотрим рилсы</span>
-                    </div>
-                </div>
-                <div class="card card-2" data-card="card-2">
-                    <div class="front" data-card="card-2"><span data-card="card-2">10</span></div>
-                    <div class="back" data-card="card-2">
-                        <img src="./img/мечтать.svg" alt="Завтрак" class="card-icon" data-card="card-2">
-                        <span data-card="card-2">Мечтаем вслух</span>
-                    </div>
-                </div>
-            </div>
-            <div class="container container-11 animate__animated">
-                <a href="https://t.me/+HJcJNnoxlu9iZWJi" class="link"></a>
+        <button id="burger" class="btn-burger"></button>
+        <h3 class="heading">Your Day!</h3>
+        <div id="menu" class="options_container">
+            <button id="close" class="btn-close"></button>
+            <h3 class="heading">Options</h3>
+            <div class="form-container"></div>
+            <div class="btns-container">
+                <button class="btn btn_add" id="btn-new-coupe">Add new coupe</button>
+                <button class="btn btn_run" id="btn-run">Run</button>
             </div>
         </div>
-        <button class="btn" id="next">Далее</button>
+        <div class="wrapper">
+            <p class="default-banner">To start the game, open the settings and create your own cards. Let's go!</p>
+        </div>
+        <!-- <button class="btn" id="next">Next</button> -->
         <!-- Heart Background -->
         <ul class="floating-boxes">
             <li></li>
