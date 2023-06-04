@@ -230,6 +230,8 @@ document.addEventListener('DOMContentLoaded', () =>{
         button.disabled = 'true'
         let progressBtns = document.querySelectorAll('.banner_close')
         let containerIndex = 1;
+        let front = document.querySelectorAll('.front')
+        let back = document.querySelectorAll('.back')
 
         main.appendChild(button)
 
@@ -287,12 +289,14 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
     })
 
-    let front = document.querySelectorAll('.front')
-    let back = document.querySelectorAll('.back')
+    /* let front = document.querySelectorAll('.front')
+    let back = document.querySelectorAll('.back') */
 
     document.addEventListener('click', (event) =>{
         let btnNext = document.getElementById('next')
         const target = event.target.dataset.card
+        let front = document.querySelectorAll('.front')
+        let back = document.querySelectorAll('.back')
         if(target === 'card-1'){
             const element = document.querySelector(`.${target}`);
             const removeEl = document.querySelector('.card-2')
