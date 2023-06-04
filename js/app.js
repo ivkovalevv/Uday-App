@@ -236,8 +236,14 @@ document.addEventListener('DOMContentLoaded', () =>{
         main.appendChild(button)
 
         button.addEventListener('click', () => {
-            front.forEach(el => el.classList.remove('non-visible'))
-            back.forEach(el => el.classList.remove('visible'))
+            front.forEach(el => {
+                el.classList.remove('non-visible')
+                el.classList.add('visible')
+            })
+            back.forEach(el => {
+                el.classList.remove('visible')
+                el.classList.add('non-visible')
+            })
             let firstChild = wrapper.children[0]
     
             if(firstChild === document.querySelector('.container-' + containerIndex)){
