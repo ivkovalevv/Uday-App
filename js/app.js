@@ -40,15 +40,15 @@ document.addEventListener('DOMContentLoaded', () =>{
 
         container.insertAdjacentHTML('afterbegin', `
             <div class="card card-1" data-card="card-1">
-                <div class="front" data-card="card-1"><span data-card="card-1">${options.id}</span></div>
-                <div class="back" data-card="card-1">
+                <div class="front visible" data-card="card-1"><span data-card="card-1">${options.id}</span></div>
+                <div class="back non-visible" data-card="card-1">
                     <img src="${options.src1 || "./img/default-icon.svg"}" class="card-icon" data-card="card-1">
                     <span data-card="card-1">${options.cardName1}</span>
                 </div>
             </div>
             <div class="card card-2" data-card="card-2">
-                <div class="front" data-card="card-2"><span data-card="card-2">${options.id}</span></div>
-                <div class="back" data-card="card-2">
+                <div class="front visible" data-card="card-2"><span data-card="card-2">${options.id}</span></div>
+                <div class="back non-visible" data-card="card-2">
                     <img src="${options.src2 || "./img/default-icon.svg"}" class="card-icon" data-card="card-2">
                     <span data-card="card-2">${options.cardName2}</span>
                 </div>
@@ -289,9 +289,6 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
     })
 
-    /* let front = document.querySelectorAll('.front')
-    let back = document.querySelectorAll('.back') */
-
     document.addEventListener('click', (event) =>{
         let btnNext = document.getElementById('next')
         const target = event.target.dataset.card
@@ -301,8 +298,14 @@ document.addEventListener('DOMContentLoaded', () =>{
             const element = document.querySelector(`.${target}`);
             const removeEl = document.querySelector('.card-2')
 
-            front.forEach(el => el.classList.add('non-visible'))
-            back.forEach(el => el.classList.add('visible'))
+            front.forEach(el => {
+                el.classList.remove('visible')
+                el.classList.add('non-visible')
+            })
+            back.forEach(el => {
+                el.classList.remove('non-visible')
+                el.classList.add('visible')
+            })
 
             element.classList.add('open')
             removeEl.style.display = 'none'
@@ -312,8 +315,14 @@ document.addEventListener('DOMContentLoaded', () =>{
             const element = document.querySelector(`.${target}`);
             const removeEl = document.querySelector('.card-1')
 
-            front.forEach(el => el.classList.add('non-visible'))
-            back.forEach(el => el.classList.add('visible'))
+            front.forEach(el => {
+                el.classList.remove('visible')
+                el.classList.add('non-visible')
+            })
+            back.forEach(el => {
+                el.classList.remove('non-visible')
+                el.classList.add('visible')
+            })
 
             element.classList.add('open')
             removeEl.style.display = 'none'
