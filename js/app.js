@@ -87,24 +87,60 @@ document.addEventListener('DOMContentLoaded', () =>{
         <div title="Remove couple" class="${"banner_close btn-close-" + options.id}"></div>
         `);
 
-        /* banner.insertAdjacentHTML('afterbegin', `
-        <div class="banner_number">${options.id}</div>
-        <div class="banner_container">
-            <div class="banner_item">
-                <img src="${options.src1 || "./img/default-icon.svg"}" class="card-icon banner_icon" data-card="card-1">
-                <div class="banner_value">${options.cardName1}</div>
-            </div>
-            <div class="banner_item">
-                <img src="${options.src2 || "./img/default-icon.svg"}" class="card-icon banner_icon" data-card="card-1">
-                <div class="banner_value">${options.cardName2}</div>
-            </div>
-        </div>
-        <div title="Remove couple" class="${"banner_close btn-close-" + options.id}"></div>
-        `); */
-
         formContainer.appendChild(banner)
 
         btnRun.disabled = false
+    }
+
+    function blurBanner(arr){
+        if(arr.length === 0){
+            return
+        } else if(arr.length !== 0){
+            for(let i = 1; i < arr.length + 1; i++){
+                document.querySelector(`.banner-id-`+ i).children[0].children[1].style.filter = 'blur(4px)'
+            }
+        }
+    }
+
+    function seeBanner(button, element){
+        let number = button.classList.value.toString().replace('banner_close btn-close-', '').replace(' banner_see', '')
+        if(element.classList.contains(`banner-id-`+ number)){
+            element.children[0].children[1].style.filter = 'none'
+            element.children[1].classList.add('banner_see-open')
+
+            setTimeout(() =>{
+                element.children[0].children[1].style.filter = 'blur(4px)'
+                element.children[1].classList.remove('banner_see-open')
+            }, 3000)
+        }
+    }
+
+    function seeAllBanners(arr){
+        let seeAllbtn = document.querySelector('.see_all-btn');
+        let j = 0;
+        while(j < arr.length){
+            arr[j].children[0].children[1].style.filter = 'none'
+            arr[j].children[1].classList.add('banner_see-open')
+            arr[j].children[1].disabled = true
+            arr[j].children[1].style.cursor = 'auto'
+            j++
+        }
+
+        seeAllbtn.textContent = 'Hide all'
+    }
+
+    function hideAllBanners(arr){
+        let seeAllbtn = document.querySelector('.see_all-btn');
+        let j = 0;
+        while(j < arr.length){
+            arr[j].children[0].children[1].style.filter = 'blur(4px)'
+            arr[j].children[1].classList.remove('banner_see-open')
+            arr[j].children[1].disabled = false
+            arr[j].children[1].style.cursor = 'pointer'
+            j++
+        }
+
+        seeAllbtn.textContent = 'See all'
     }
 
     function deleteBanner(button, element){
@@ -120,21 +156,28 @@ document.addEventListener('DOMContentLoaded', () =>{
             }
 
             for(let i = 0; i < cardsOptions.length; i++){
-                console.log(i)
                 _createBanner(cardsOptions[i])
             }
-            console.log(cardsOptions)
             i--
         }
     }
 
     document.addEventListener('click', function(event){
-        if(event.target.classList[0] === 'banner_close'){
-            let banners = document.querySelectorAll('.banner')
-            console.log(banners)
+        let banners = document.querySelectorAll('.banner')
+        if(event.target.classList[0] === 'banner_close' && event.target.classList.contains('banner_see')){
+            banners.forEach(el =>{
+                seeBanner(event.target, el)
+            })
+        } else if(event.target.classList[0] === 'banner_close'){
             banners.forEach(el =>{
                 deleteBanner(event.target, el)
             })
+        }
+
+        if(event.target.textContent === 'See all'){
+            seeAllBanners(banners)
+        } else if(event.target.textContent === 'Hide all'){
+            hideAllBanners(banners)
         }
     })
 
@@ -229,6 +272,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         button.textContent = 'Next'
         button.disabled = 'true'
         let progressBtns = document.querySelectorAll('.banner_close')
+        let banner = document.querySelectorAll(".banner")
         let containerIndex = 1;
         let front = document.querySelectorAll('.front')
         let back = document.querySelectorAll('.back')
@@ -254,12 +298,15 @@ document.addEventListener('DOMContentLoaded', () =>{
                     progressBtns[containerIndex - 1].classList.add('banner_completed')
                     progressBtns[containerIndex - 1].disabled = 'true'
                     progressBtns[containerIndex - 1].setAttribute('title', '')
+                    banner[containerIndex - 1].children[0].children[1].style.filter = 'none'
                     containerIndex++
                     return containerIndex
                 } else if(document.querySelector('.container-' + (containerIndex + 1)) === null){
                     progressBtns[containerIndex - 1].classList.add('banner_completed')
                     progressBtns[containerIndex - 1].disabled = 'true'
                     progressBtns[containerIndex - 1].setAttribute('title', '')
+                    banner[containerIndex - 1].children[0].children[1].style.filter = 'none'
+
                     document.querySelector('.container-' + containerIndex).classList.add('animate__backOutLeft')
                     setTimeout(()=>{
                         document.querySelector('.container-' + containerIndex).style.display = 'none'
@@ -278,11 +325,22 @@ document.addEventListener('DOMContentLoaded', () =>{
         wrapper.innerHTML = ''
         btnRun.disabled = true
         let progressBtns = document.querySelectorAll('.banner_close')
+
+        formContainer.insertAdjacentHTML('afterbegin', `
+        <button class="see_all-btn">See all</button>
+        `)
+
+        blurBanner(cardsOptions)
         progressBtns.forEach(progressBtn =>{
             if(progressBtn.classList.contains('banner_completed')){
                 progressBtn.classList.remove('banner_completed')
+                progressBtn.classList.add('banner_see')
                 progressBtn.disabled = 'false'
-                progressBtn.setAttribute('title', 'Remove couple')
+                progressBtn.setAttribute('title', 'See banner')
+            } else {
+                progressBtn.classList.add('banner_see')
+                progressBtn.disabled = 'false'
+                progressBtn.setAttribute('title', 'See banner')
             }
         })
         for (let i = 0; i < cardsOptions.length; i++){
@@ -333,8 +391,6 @@ document.addEventListener('DOMContentLoaded', () =>{
             element.classList.add('open')
             removeEl.style.display = 'none'
             btnNext.disabled = false
-        } else if(target === 'btn-close-1'){
-            console.log(cardsOptions)
         }
     })
 
