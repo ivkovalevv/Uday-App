@@ -93,6 +93,10 @@ document.addEventListener('DOMContentLoaded', () =>{
     }
 
     function blurBanner(arr){
+        let seeAllBanners = document.querySelector('.see_all-btn')
+        seeAllBanners.disabled = false
+        seeAllBanners.classList.remove('disabled')
+
         if(arr.length === 0){
             return
         } else if(arr.length !== 0){
@@ -103,6 +107,10 @@ document.addEventListener('DOMContentLoaded', () =>{
     }
 
     function seeBanner(button, element){
+        let seeAllBanners = document.querySelector('.see_all-btn')
+        seeAllBanners.disabled = true
+        seeAllBanners.classList.add('disabled')
+
         let number = button.classList.value.toString().replace('banner_close btn-close-', '').replace(' banner_see', '')
         if(element.classList.contains(`banner-id-`+ number)){
             element.children[0].children[1].style.filter = 'none'
@@ -111,6 +119,8 @@ document.addEventListener('DOMContentLoaded', () =>{
             setTimeout(() =>{
                 element.children[0].children[1].style.filter = 'blur(4px)'
                 element.children[1].classList.remove('banner_see-open')
+                seeAllBanners.disabled = false
+                seeAllBanners.classList.remove('disabled')
             }, 3000)
         }
     }
@@ -164,6 +174,14 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     document.addEventListener('click', function(event){
         let banners = document.querySelectorAll('.banner')
+        let allBanners = []
+        for(let banner of banners){
+            if(!banner.classList.contains('done')){
+                allBanners.push(banner)
+            }
+        }
+
+
         if(event.target.classList[0] === 'banner_close' && event.target.classList.contains('banner_see')){
             banners.forEach(el =>{
                 seeBanner(event.target, el)
@@ -175,9 +193,9 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
 
         if(event.target.textContent === 'See all'){
-            seeAllBanners(banners)
+            seeAllBanners(allBanners)
         } else if(event.target.textContent === 'Hide all'){
-            hideAllBanners(banners)
+            hideAllBanners(allBanners)
         }
     })
 
@@ -206,8 +224,8 @@ document.addEventListener('DOMContentLoaded', () =>{
                 </div>
             </div>
             <div class="btns-container">
-            <button class="create-coupe-btn" id="createCoupe">Add</button>
-            <button class="create-coupe-btn" id="cancelCoupe">Cancel</button>
+                <button class="create-coupe-btn" id="createCoupe">Add</button>
+                <button class="create-coupe-btn" id="cancelCoupe">Cancel</button>
             </div>
         `);
 
@@ -276,6 +294,8 @@ document.addEventListener('DOMContentLoaded', () =>{
         let containerIndex = 1;
         let front = document.querySelectorAll('.front')
         let back = document.querySelectorAll('.back')
+        let banners = document.querySelectorAll('.banner')
+        let seeBannersBtn = document.querySelector('.see_all-btn')
 
         main.appendChild(button)
 
@@ -295,6 +315,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                     button.disabled = true
                     next(document.querySelector('.container-' + containerIndex), document.querySelector('.container-' + (containerIndex + 1)))
 
+                    banners[containerIndex - 1].classList.add('done')
                     progressBtns[containerIndex - 1].classList.add('banner_completed')
                     progressBtns[containerIndex - 1].disabled = 'true'
                     progressBtns[containerIndex - 1].setAttribute('title', '')
@@ -302,10 +323,13 @@ document.addEventListener('DOMContentLoaded', () =>{
                     containerIndex++
                     return containerIndex
                 } else if(document.querySelector('.container-' + (containerIndex + 1)) === null){
+                    banners[containerIndex - 1].classList.add('done')
                     progressBtns[containerIndex - 1].classList.add('banner_completed')
                     progressBtns[containerIndex - 1].disabled = 'true'
                     progressBtns[containerIndex - 1].setAttribute('title', '')
                     banner[containerIndex - 1].children[0].children[1].style.filter = 'none'
+
+                    seeBannersBtn.parentNode.removeChild(seeBannersBtn)
 
                     document.querySelector('.container-' + containerIndex).classList.add('animate__backOutLeft')
                     setTimeout(()=>{
@@ -323,14 +347,25 @@ document.addEventListener('DOMContentLoaded', () =>{
     btnRun.addEventListener('click', () =>{
         menu.style.left = '-100%'
         wrapper.innerHTML = ''
-        btnRun.disabled = true
         let progressBtns = document.querySelectorAll('.banner_close')
+        let btnAdd = document.getElementById('btn-new-coupe')
+        let buttonsContainer = document.querySelector('.btns-container')
 
-        formContainer.insertAdjacentHTML('afterbegin', `
-        <button class="see_all-btn">See all</button>
+        btnAdd.parentNode.removeChild(btnAdd)
+        btnRun.parentNode.removeChild(btnRun)
+
+        buttonsContainer.insertAdjacentHTML('afterbegin', `
+            <button class="btn clear_all-btn" id="clear-all-btn">Clear all</button>
         `)
 
+        if(!formContainer.children[0].classList.contains('see_all-btn')){
+            formContainer.insertAdjacentHTML('afterbegin', `
+            <button class="see_all-btn">See all</button>
+            `)
+        }
+
         blurBanner(cardsOptions)
+
         progressBtns.forEach(progressBtn =>{
             if(progressBtn.classList.contains('banner_completed')){
                 progressBtn.classList.remove('banner_completed')
