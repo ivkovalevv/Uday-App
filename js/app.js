@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () =>{
     const main = document.querySelector('.main')
     const wrapper = document.querySelector('.wrapper')
-    const formContainer = document.querySelector('.form-container')
+    let formContainer = document.querySelector('.form-container')
+    let buttonsContainer = document.querySelector('.btns-container')
     let btnNewCouple = document.getElementById('btn-new-coupe')
     let btnRun = document.getElementById('btn-run')
     btnRun.disabled = true
@@ -26,8 +27,6 @@ document.addEventListener('DOMContentLoaded', () =>{
             {id: '12', value: './img/психоанализ.svg'}
         ], 
         onSelect(item) {
-            console.log('Selected item:', item)
-
             return item
         }
     }
@@ -76,11 +75,11 @@ document.addEventListener('DOMContentLoaded', () =>{
         <div class="banner_container">
             <div class="banner_item">
                 <img src="${options.src1 || "./img/default-icon.svg"}" class="card-icon banner_icon" data-card="card-1">
-                <div class="banner_value">${options.cardName1}</div>
+                <div class="banner_value">${options.cardName1 || `${options.id} Card one`}</div>
             </div>
             <div class="banner_item">
                 <img src="${options.src2 || "./img/default-icon.svg"}" class="card-icon banner_icon" data-card="card-1">
-                <div class="banner_value">${options.cardName2}</div>
+                <div class="banner_value">${options.cardName2 || `${options.id} Card two`}</div>
             </div>
         </div>
         </div>
@@ -349,14 +348,9 @@ document.addEventListener('DOMContentLoaded', () =>{
         wrapper.innerHTML = ''
         let progressBtns = document.querySelectorAll('.banner_close')
         let btnAdd = document.getElementById('btn-new-coupe')
-        let buttonsContainer = document.querySelector('.btns-container')
 
-        btnAdd.parentNode.removeChild(btnAdd)
-        btnRun.parentNode.removeChild(btnRun)
-
-        buttonsContainer.insertAdjacentHTML('afterbegin', `
-            <button class="btn clear_all-btn" id="clear-all-btn">Clear all</button>
-        `)
+        btnAdd.style.display = 'none'
+        btnRun.style.display = 'none'
 
         if(!formContainer.children[0].classList.contains('see_all-btn')){
             formContainer.insertAdjacentHTML('afterbegin', `
@@ -386,6 +380,16 @@ document.addEventListener('DOMContentLoaded', () =>{
         } else{
             createBtnNext()
         }
+
+        buttonsContainer.insertAdjacentHTML('afterbegin', `
+            <button class="btn clear_all-btn" id="clear-all-btn">Clear all</button>
+        `)
+
+        let clearAllBtn = document.getElementById('clear-all-btn')
+
+        clearAllBtn.addEventListener('click', () => {
+            location.reload()
+        })
     })
 
     document.addEventListener('click', (event) =>{

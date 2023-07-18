@@ -884,4 +884,8 @@ ul.floating-boxes {
   .card{
       width: 42%;
   }
+
+  ul.floating-boxes {
+    width: 10% !important;
+  }
 }
