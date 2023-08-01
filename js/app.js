@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () =>{
             </div>
         </div>
         </div>
-        <div title="Remove couple" class="${"banner_close btn-close-" + options.id}"></div>
+        <button title="Remove couple" class="${"banner_close btn-close-" + options.id}"></button>
         `);
 
         formContainer.appendChild(banner)
@@ -364,11 +364,11 @@ document.addEventListener('DOMContentLoaded', () =>{
             if(progressBtn.classList.contains('banner_completed')){
                 progressBtn.classList.remove('banner_completed')
                 progressBtn.classList.add('banner_see')
-                progressBtn.disabled = 'false'
+                progressBtn.disabled = false
                 progressBtn.setAttribute('title', 'See banner')
             } else {
                 progressBtn.classList.add('banner_see')
-                progressBtn.disabled = 'false'
+                progressBtn.disabled = false
                 progressBtn.setAttribute('title', 'See banner')
             }
         })
