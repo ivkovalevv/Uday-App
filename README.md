@@ -1,4 +1,4 @@
-# 💖 Uday App - Игра для пар
+# 💖 U Day App - Игра для пар
 
 [![Демо](https://img.shields.io/badge/-ПОПРОБОВАТЬ-FF69B4?style=for-the-badge)](https://ivkovalevv.github.io/u-day-app/)
 [![Код](https://img.shields.io/badge/-ИСХОДНИКИ-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ivkovalevv/u-day-app)
